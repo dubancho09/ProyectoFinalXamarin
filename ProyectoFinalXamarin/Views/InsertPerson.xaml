@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoFinalXamarin.Views.InsertPerson"
+             NavigationPage.HasNavigationBar="False">
+    <Grid RowDefinitions="70, *">
+        <StackLayout Grid.Row="0" VerticalOptions="Center" HorizontalOptions="Center" Orientation="Horizontal">
+            <Label Text="Registar Persona"
+                   FontAttributes="bold"
+                   FontSize="25"
+                   Margin="10"/>
+        </StackLayout>
+
+        <Frame Grid.Row="1" >
+            <StackLayout>
+                <StackLayout>
+                    <Label Text="Nombre"/>
+                    <Entry Placeholder="Ingrese Nombre"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Teléfono"/>
+                    <Entry Placeholder="Ingrese el teléfono"/>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Dirección"/>
+                    <Entry Placeholder="Ingrese la dirección"/>
+                </StackLayout>
+                <StackLayout Margin="0,20,0,0">
+                    <Frame BackgroundColor="#66347F"
+                           CornerRadius="15">
+                        <Grid ColumnDefinitions="*,*" RowDefinitions="*"
+                              HorizontalOptions="Center" Margin="80,0,0,0">
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="https://i.ibb.co/W6B9Shn/guardar-el-archivo.png"
+                                       HeightRequest="20"/>
+                                <Label Text="Guardar"
+                                       TextColor="White"
+                                       FontAttributes="Bold"
+                                       FontSize="18"/>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+        </Frame>
+    </Grid>
+</ContentPage>
