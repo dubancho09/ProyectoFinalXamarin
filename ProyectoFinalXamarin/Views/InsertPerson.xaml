@@ -13,21 +13,35 @@
 
         <Frame Grid.Row="1" >
             <StackLayout>
+                <!--Campo nombre-->
                 <StackLayout>
                     <Label Text="Nombre"/>
-                    <Entry Placeholder="Ingrese Nombre"/>
+                    <Entry Placeholder="Ingrese Nombre"
+                           Text="{Binding person.Name}"/>
                 </StackLayout>
+                
+                <!--Campo teléfono-->
                 <StackLayout>
                     <Label Text="Teléfono"/>
-                    <Entry Placeholder="Ingrese el teléfono"/>
+                    <Entry Placeholder="Ingrese el teléfono"
+                           Text="{Binding person.NumberPhone}"/>
                 </StackLayout>
+                
+                <!--Campo dirección-->
                 <StackLayout>
                     <Label Text="Dirección"/>
-                    <Entry Placeholder="Ingrese la dirección"/>
+                    <Entry Placeholder="Ingrese la dirección"
+                           Text="{Binding person.Address}"/>
                 </StackLayout>
+                
+                <!--Boton Guardar-->
                 <StackLayout Margin="0,20,0,0">
                     <Frame BackgroundColor="#66347F"
                            CornerRadius="15">
+
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ValidateAsyncCommand}"/>
+                        </Frame.GestureRecognizers>
                         <Grid ColumnDefinitions="*,*" RowDefinitions="*"
                               HorizontalOptions="Center" Margin="80,0,0,0">
                             <StackLayout Orientation="Horizontal">

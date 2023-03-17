@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using ProyectoFinalXamarin.ViewModels;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -14,6 +10,7 @@ namespace ProyectoFinalXamarin.Views
     {
         public InsertPerson()
         {
+            BindingContext = new VMInsertPerson(Navigation);
             InitializeComponent();
         }
     }
