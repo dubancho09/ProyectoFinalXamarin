@@ -17,7 +17,7 @@ namespace ProyectoFinalXamarin
             {
                 if (repo == null)
                 {
-                    repo  = new PersonRepository(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Person.db3"));
+                    repo  = new PersonRepository(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "Person_01.db3"));
                 }
 
                 return repo;

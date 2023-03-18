@@ -1,5 +1,6 @@
 ﻿using ProyectoFinalXamarin.Models;
 using ProyectoFinalXamarin.ViewModels.Base;
+using ProyectoFinalXamarin.Views;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -27,6 +28,7 @@ namespace ProyectoFinalXamarin.ViewModels
             if(res != 0)
             {
                 await DisplayAlert("Exito", "El registro se guardo correctamente", "Ok");
+                await Navigation.PushAsync(new PeopleList());
             }
             else
             {
@@ -57,15 +59,17 @@ namespace ProyectoFinalXamarin.ViewModels
             {
                 await SaveAsync();
             }
-            
-            
-            
+           
+        }
 
+        public async Task PeopleListAsync()
+        {
+            await Navigation.PushAsync(new PeopleList());
         }
         #endregion
         #region COMANDOS
         public ICommand ValidateAsyncCommand => new Command(async () => await ValidateAsync());
-        //public ICommand ValidateCommand => new Command(Validate);
+        public ICommand NavigatePeopleAsyncCommand => new Command(async () => await PeopleListAsync());
         #endregion
     }
 }

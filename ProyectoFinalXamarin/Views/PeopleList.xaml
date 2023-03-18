@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoFinalXamarin.Views.PeopleList"
+             NavigationPage.HasNavigationBar="False">
+    <Grid RowDefinitions="100,100,100,*">
+        <!--Inicio barra opciones-->
+        <Grid RowDefinitions="80,*" Grid.Row="0">
+            <StackLayout Orientation="Horizontal" 
+                     VerticalOptions="Center" 
+                     Margin="15">
+                <Image Source="https://i.ibb.co/8g9xhnb/volver.png" 
+                   HeightRequest="50">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackAsyncCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <Label Text="Listado de personas" 
+                   HorizontalOptions="CenterAndExpand" 
+                   VerticalOptions="Center"
+                   FontAttributes="Bold"
+                   FontSize="20"/>
+                <Image Source="https://i.ibb.co/rbJ3XmM/casa.png" HeightRequest="50">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding HomeAsyncCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+        </Grid>
+        <!--Inicio barra opciones-->
+        
+        
+        <!--Inicio Botones de mantenimiento-->
+        <Grid ColumnDefinitions="*,*,*" Margin="10" Grid.Row="1">
+            <Frame BackgroundColor="#9E4784" CornerRadius="15">
+                <StackLayout Orientation="Vertical">
+                    <Image
+                        Source="https://i.ibb.co/w7FGjDp/editar-1.png" HeightRequest="30"/>
+                </StackLayout>
+            </Frame>
+            <Frame BackgroundColor="#37306B" CornerRadius="15" Grid.Column="1">
+                <StackLayout Orientation="Vertical">
+                    <Image Source="https://i.ibb.co/jTbpKMX/ubicacion.png" HeightRequest="30"/>
+                </StackLayout>
+            </Frame>
+            <Frame BackgroundColor="red" CornerRadius="15" Grid.Column="2">
+                <StackLayout Orientation="Vertical">
+                    <Image Source="https://i.ibb.co/0C8wFfG/eliminar.png" HeightRequest="30"/>
+                </StackLayout>
+            </Frame>
+        </Grid>
+        <!--Inicio Botones de mantenimiento-->
+        
+        
+        <!--Inicio lista de personas-->
+        <Grid ColumnDefinitions="*,*,*" Margin="10" Grid.Row="2">
+            <Label Text="Nombre"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+            <Label Text="Teléfono"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   Grid.Column="1"
+                   HorizontalOptions="Center"/>
+            <Label Text="Ubicación"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   Grid.Column="2"
+                   HorizontalOptions="Center"/>
+        </Grid>
+
+
+        
+
+        <!--Inicio listview-->
+        <StackLayout Grid.Row="3">
+            <ListView ItemsSource="{Binding PersonList}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid ColumnDefinitions="*,*,*" RowDefinitions="">
+                                <Label Text="{Binding Name}"/>
+                                <Label Grid.Column="1" Text="{Binding NumberPhone}"/>
+                                <Label Grid.Column="2" Text="{Binding Address}"/>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+
+            </ListView>
+        </StackLayout>
+        <!--Fin listview-->
+        <!--Fin lista de personas-->
+        
+    </Grid>
+
+    
+</ContentPage>

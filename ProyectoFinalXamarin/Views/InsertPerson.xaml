@@ -55,6 +55,28 @@
                         </Grid>
                     </Frame>
                 </StackLayout>
+
+                <!--Boton Lista-->
+                <StackLayout Margin="0,10,0,0">
+                    <Frame BackgroundColor="#66347F"
+                           CornerRadius="15">
+
+                        <Frame.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding NavigatePeopleAsyncCommand}"/>
+                        </Frame.GestureRecognizers>
+                        <Grid ColumnDefinitions="*,*" RowDefinitions="*"
+                              HorizontalOptions="Center" Margin="80,0,0,0">
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="https://i.ibb.co/DC60ZyM/grupo.png"
+                                       HeightRequest="30"/>
+                                <Label Text="Listado"
+                                       TextColor="White"
+                                       FontAttributes="Bold"
+                                       FontSize="18"/>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                </StackLayout>
             </StackLayout>
         </Frame>
     </Grid>

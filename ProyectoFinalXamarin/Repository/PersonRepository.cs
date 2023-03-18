@@ -1,5 +1,6 @@
 ﻿using ProyectoFinalXamarin.Models;
 using SQLite;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ProyectoFinalXamarin.Repository
@@ -18,6 +19,12 @@ namespace ProyectoFinalXamarin.Repository
         public async Task<int> InsertPerson(Person person)
         {
             return await _database.InsertAsync(person);
+        }
+
+        //Retornar lista de personas
+        public async Task<List<Person>> GetAllPerson()
+        {
+            return await _database.Table<Person>().ToListAsync();
         }
     }
 }
