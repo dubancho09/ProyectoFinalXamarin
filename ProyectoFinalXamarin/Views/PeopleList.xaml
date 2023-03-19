@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoFinalXamarin.Views.PeopleList"
              NavigationPage.HasNavigationBar="False">
-    <Grid RowDefinitions="100,100,100,*">
+    <Grid RowDefinitions="100,100,45,*">
         <!--Inicio barra opciones-->
         <Grid RowDefinitions="80,*" Grid.Row="0">
             <StackLayout Orientation="Horizontal" 
@@ -35,7 +35,12 @@
             <Frame BackgroundColor="#9E4784" CornerRadius="15">
                 <StackLayout Orientation="Vertical">
                     <Image
-                        Source="https://i.ibb.co/w7FGjDp/editar-1.png" HeightRequest="30"/>
+                        Source="https://i.ibb.co/w7FGjDp/editar-1.png"
+                        HeightRequest="30">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding EditAsyncCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
                 </StackLayout>
             </Frame>
             <Frame BackgroundColor="#37306B" CornerRadius="15" Grid.Column="1">
@@ -45,7 +50,12 @@
             </Frame>
             <Frame BackgroundColor="red" CornerRadius="15" Grid.Column="2">
                 <StackLayout Orientation="Vertical">
-                    <Image Source="https://i.ibb.co/0C8wFfG/eliminar.png" HeightRequest="30"/>
+                    <Image Source="https://i.ibb.co/0C8wFfG/eliminar.png" 
+                           HeightRequest="30">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding DeletePersonAsyncCommad}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
                 </StackLayout>
             </Frame>
         </Grid>
@@ -53,6 +63,8 @@
         
         
         <!--Inicio lista de personas-->
+        
+        <!--Inicio header lista-->
         <Grid ColumnDefinitions="*,*,*" Margin="10" Grid.Row="2">
             <Label Text="Nombre"
                    FontSize="18"
@@ -69,20 +81,29 @@
                    Grid.Column="2"
                    HorizontalOptions="Center"/>
         </Grid>
-
+        <!--Fin header lista-->
 
         
 
         <!--Inicio listview-->
-        <StackLayout Grid.Row="3">
-            <ListView ItemsSource="{Binding PersonList}">
+        <StackLayout Grid.Row="3" Margin="10">
+            <ListView ItemsSource="{Binding PersonList}"
+                      SelectedItem="{Binding PersonSelect}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <Grid ColumnDefinitions="*,*,*" RowDefinitions="">
-                                <Label Text="{Binding Name}"/>
-                                <Label Grid.Column="1" Text="{Binding NumberPhone}"/>
-                                <Label Grid.Column="2" Text="{Binding Address}"/>
+                            <Grid ColumnDefinitions="*,*,*">
+                                <Label Text="{Binding Name}"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"/>
+                                <Label Grid.Column="1"
+                                       Text="{Binding NumberPhone}"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"/>
+                                <Label Grid.Column="2"
+                                       Text="{Binding Address}"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"/>
                             </Grid>
                         </ViewCell>
                     </DataTemplate>
@@ -91,6 +112,7 @@
             </ListView>
         </StackLayout>
         <!--Fin listview-->
+        
         <!--Fin lista de personas-->
         
     </Grid>

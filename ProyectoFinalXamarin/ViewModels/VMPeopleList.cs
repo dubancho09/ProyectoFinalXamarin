@@ -2,7 +2,6 @@
 using ProyectoFinalXamarin.ViewModels.Base;
 using ProyectoFinalXamarin.Views;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -14,6 +13,7 @@ namespace ProyectoFinalXamarin.ViewModels
     {
         #region VARIABLES
         public ObservableCollection<Person> PersonList { get; set; }
+        public Person PersonSelect { get; set; }
         #endregion
         #region CONSTRUCTOR
         public VMPeopleList(INavigation navigation)
@@ -22,7 +22,7 @@ namespace ProyectoFinalXamarin.ViewModels
             GetPerson();
         }
         #endregion
-        
+
         #region PROCESOS
         //Navegar Atras
         public async Task BackAsyncrono()
@@ -56,28 +56,68 @@ namespace ProyectoFinalXamarin.ViewModels
                         Address = person.Address,
                     });
 
-                    
+
                 }
 
 
 
-                
+
             }
-            catch
+            catch (Exception ex)
             {
-                await DisplayAlert("Error", "Ha ocurrido un error mientras se intentaba mostrar la lista de personas, itenta mas tarde...", "Ok");
+                Console.WriteLine(ex.ToString());
+            }
+
+        }
+
+        //Eliminar Persona
+        public async Task DeletePersonAsync()
+        {
+            if (PersonSelect != null)
+            {
+                var resp = await DisplayAlert("Alerta", "¿Desea eliminar el registro seleccionado?", "Si", "No");
+                if (resp)
+                {
+                    var del = App.Repo.DeletePerson(PersonSelect);
+                    await DisplayAlert("Alerta", "El registro ha sido eliminado con exito", "ok");
+                    await Navigation.PushAsync(new PeopleList());
+                }
+                else
+                {
+                    await DisplayAlert("Alerta", "El registro no ha sido eliminado", "ok");
+                    await Navigation.PushAsync(new PeopleList());
+                }
+            }
+            else
+            {
+                await DisplayAlert("Alerta", "Debe seleccionar un registro", "Ok");
+            }
+        }
+
+        //Editar persona
+        public async Task EditPageAsync()
+        {
+            if(PersonSelect != null)
+            {
+                App.Current.Properties["id"] = PersonSelect.Id;
+                App.Current.Properties["name"] = PersonSelect.Name;
+                App.Current.Properties["numberPhone"] = PersonSelect.NumberPhone;
+                App.Current.Properties["address"] = PersonSelect.Address;
+                await Navigation.PushAsync(new EditPerson());
+            }
+            else
+            {
+                await DisplayAlert("Alerta", "Debe seleccionar un registro", "Ok");
             }
             
         }
-        public void ProcesoSimple()
-        {
-
-        }
         #endregion
         #region COMANDOS
+
+        public ICommand EditAsyncCommand => new Command(async () => await EditPageAsync());
         public ICommand HomeAsyncCommand => new Command(async () => await HomeAsyncrono());
         public ICommand BackAsyncCommand => new Command(async () => await BackAsyncrono());
-        public ICommand ProcespSimpleCommand => new Command(ProcesoSimple);
+        public ICommand DeletePersonAsyncCommad => new Command(async () => await DeletePersonAsync());
         #endregion
     }
 }
