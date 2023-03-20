@@ -111,9 +111,24 @@ namespace ProyectoFinalXamarin.ViewModels
             }
             
         }
+
+        //Ubicacion Persona
+        public async Task LocationAsync()
+        {
+            if(PersonSelect != null)
+            {
+                App.Current.Properties["address"] = PersonSelect.Address;
+                await Navigation.PushAsync(new Location());
+            }
+            else
+            {
+                await DisplayAlert("Alerta", "Debe seleccionar un registro", "Ok");
+            }
+        }
         #endregion
         #region COMANDOS
 
+        public ICommand LocationAsyncCommand => new Command(async () => await LocationAsync());
         public ICommand EditAsyncCommand => new Command(async () => await EditPageAsync());
         public ICommand HomeAsyncCommand => new Command(async () => await HomeAsyncrono());
         public ICommand BackAsyncCommand => new Command(async () => await BackAsyncrono());

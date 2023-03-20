@@ -33,28 +33,31 @@
         <!--Inicio Botones de mantenimiento-->
         <Grid ColumnDefinitions="*,*,*" Margin="10" Grid.Row="1">
             <Frame BackgroundColor="#9E4784" CornerRadius="15">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding EditAsyncCommand}"/>
+                </Frame.GestureRecognizers>
                 <StackLayout Orientation="Vertical">
                     <Image
                         Source="https://i.ibb.co/w7FGjDp/editar-1.png"
                         HeightRequest="30">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding EditAsyncCommand}"/>
-                        </Image.GestureRecognizers>
                     </Image>
                 </StackLayout>
             </Frame>
             <Frame BackgroundColor="#37306B" CornerRadius="15" Grid.Column="1">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding LocationAsyncCommand}"/>
+                </Frame.GestureRecognizers> 
                 <StackLayout Orientation="Vertical">
                     <Image Source="https://i.ibb.co/jTbpKMX/ubicacion.png" HeightRequest="30"/>
                 </StackLayout>
             </Frame>
             <Frame BackgroundColor="red" CornerRadius="15" Grid.Column="2">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding DeletePersonAsyncCommad}"/>
+                </Frame.GestureRecognizers>
                 <StackLayout Orientation="Vertical">
                     <Image Source="https://i.ibb.co/0C8wFfG/eliminar.png" 
                            HeightRequest="30">
-                        <Image.GestureRecognizers>
-                            <TapGestureRecognizer Command="{Binding DeletePersonAsyncCommad}"/>
-                        </Image.GestureRecognizers>
                     </Image>
                 </StackLayout>
             </Frame>
